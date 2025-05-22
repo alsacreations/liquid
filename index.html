@@ -11,58 +11,83 @@
   <body class="liquid">
     <!-- <div class="surface"> -->
     <h1>Liquid</h1>
-    <h2>Un gabarit en Grid Layout</h2>
+    <h2>Un gabarit responsive en Grid Layout</h2>
 
     <p>
-      <strong>Liquid</strong> est le nom d'un agencement réalisé en CSS Grid
-      Layout compatible avec l'affichage de blocs qui "sortent" de la maquette,
-      généralement appelés <i lang="en">full-bleed</i>,
-      <i lang="en">breakout</i>, <i lang="en">hero</i> ou
-      <i lang="en">splash</i>.
+      <strong>Liquid</strong> est un agencement CSS Grid Layout. Il permet de
+      gérer facilement des éléments qui s'étendent sur toute la largeur de la
+      page (appelés <i lang="en">full-bleed</i>, <i lang="en">breakout</i>,
+      <i lang="en">hero</i> ou <i lang="en">splash</i>), tout en maintenant un
+      contenu principal centré et lisible.
     </p>
 
-    <p>Caractéristiques du gabarit <code>.liquid</code>&nbsp;:</p>
+    <h3>Fonctionnalités</h3>
     <ul>
       <li>
-        Le conteneur <code>.liquid</code> a une largeur de contenu maximum
-        (<code>--liquid-content</code>) et est centré dans la fenêtre. Le
-        contenu "classique" s'y place automatiquement.
+        <strong>Contenu principal centré</strong> : Le conteneur
+        <code>.liquid</code> définit une largeur maximale pour le contenu et le
+        centre horizontalement.
       </li>
       <li>
-        Un espace minimum de côté (<code>--liquid-spacer</code>) est toujours
-        présent afin que le conteneur ne soit pas collé aux bords de fenêtre sur
-        des petits écrans.
+        <strong>Marges latérales dynamiques</strong> : Un espacement minimal est
+        conservé sur les côtés, assurant que le contenu ne touche jamais les
+        bords de la fenêtre, même sur de petits écrans.
       </li>
       <li>
-        Un enfant <code>.splash</code> déborde de la zone de contenu et occupe
-        toute la surface.
+        <strong>Éléments pleine largeur (Splash)</strong> : La classe
+        <code>.splash</code> permet à un élément enfant de s'étendre sur toute
+        la largeur disponible.
       </li>
       <li>
-        <code>.liquid</code> peut être appliqué sur n'importe quel conteneur,
-        voire sur <code>body</code>.
+        <strong>Variantes de positionnement</strong> :
+        <ul>
+          <li>
+            <code>.splash-start</code> : l'élément s'étend du bord gauche
+            jusqu'à la fin de la zone de contenu.
+          </li>
+          <li>
+            <code>.splash-end</code> : l'élément s'étend du début de la zone de
+            contenu jusqu'au bord droit.
+          </li>
+          <li>
+            <code>.splash-half-start</code> : l'élément s'étend du bord gauche
+            jusqu'au milieu de la page.
+          </li>
+          <li>
+            <code>.splash-half-end</code> : l'élément s'étend du milieu de la
+            page jusqu'au bord droit.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Flexibilité d'application</strong> : La classe
+        <code>.liquid</code> peut être appliquée à n'importe quel conteneur, y
+        compris l'élément <code>&lt;body&gt;</code>.
       </li>
     </ul>
 
     <section class="splash">
       <p>
-        Un élément de classe <code>.splash</code> déborde de la zone de contenu
-        et occupe toute la surface&nbsp;:<br /><code
+        Un élément de classe <code>.splash</code> s'étend sur toute la largeur
+        disponible&nbsp;:<br /><code
           >.splash {grid-column: liquid-start / liquid-end;}</code
         >
       </p>
-      <p>Son contenu s'aligne sur la zone de contenu générale.</p>
+      <p>
+        Son contenu interne reste aligné avec la zone de contenu principale.
+      </p>
     </section>
 
     <p>
       Les variantes <code>.splash-start</code> et
-      <code>.splash-end</code> permettent de placer les enfants d'un côté ou de
-      l'autre de la surface.
+      <code>.splash-end</code> permettent de positionner des éléments qui
+      s'étendent sur une partie de la largeur de la page, en partant des bords.
     </p>
 
     <section class="splash-start">
       <p>
-        Un élément de classe <code>.splash-start</code> se place au début de la
-        surface&nbsp;:<br /><code
+        Un élément de classe <code>.splash-start</code> s'étend du bord gauche
+        jusqu'à la fin de la zone de contenu&nbsp;:<br /><code
           >.splash-start {grid-column: liquid-start / content-end;}</code
         >
       </p>
@@ -70,8 +95,8 @@
 
     <section class="splash-end">
       <p>
-        Un élément de classe <code>.splash-end</code> se place à la fin de la
-        surface&nbsp;:<br /><code
+        Un élément de classe <code>.splash-end</code> s'étend du début de la
+        zone de contenu jusqu'au bord droit&nbsp;:<br /><code
           >.splash-end {grid-column: content-start / liquid-end;}</code
         >
       </p>
@@ -79,14 +104,14 @@
 
     <p>
       Les variantes <code>.splash-half-start</code> et
-      <code>.splash-half-end</code> permettent de placer les enfants d'un côté
-      ou de l'autre de la surface, de part et d'autre du milieu de page.
+      <code>.splash-half-end</code> permettent de positionner des éléments sur
+      une moitié de la page.
     </p>
 
     <section class="splash-half-start">
       <p>
-        Un élément de classe <code>.splash-half-start</code> se place au début
-        de la surface et s'arrête en milieu de page&nbsp;:<br /><code
+        Un élément de classe <code>.splash-half-start</code> s'étend du bord
+        gauche jusqu'au milieu de la page&nbsp;:<br /><code
           >.splash-half-start {grid-column: liquid-start / half;}</code
         >
       </p>
@@ -94,8 +119,8 @@
 
     <section class="splash-half-end">
       <p>
-        Un élément de classe <code>.splash-half-end</code> débute en milieu de
-        page et termine au fin de la surface&nbsp;:<br /><code
+        Un élément de classe <code>.splash-half-end</code> s'étend du milieu de
+        la page jusqu'au bord droit&nbsp;:<br /><code
           >.splash-half-end {grid-column: half / liquid-end;}</code
         >
       </p>
@@ -108,60 +133,63 @@
     />
 
     <pre><code>.liquid {
-  --liquid-spacer: 2rem;
-  --liquid-content: 1024px;
+  --liquid-spacer: 2rem; /* Espacement minimal sur les côtés */
+  --liquid-content: 1024px; /* Largeur maximale du contenu */
 
   display: grid;
   grid-template-columns:
-   [liquid-start] minmax(var(--liquid-spacer), 1fr)
-   [content-start] minmax(auto, calc(var(--liquid-content) / 2))
-   [half] minmax(auto, calc(var(--liquid-content) / 2))
-   [content-end] minmax(var(--liquid-spacer), 1fr)
+   [liquid-start] minmax(var(--liquid-spacer), 1fr) /* Marge latérale gauche */
+   [content-start] minmax(auto, calc(var(--liquid-content) / 2)) /* Moitié gauche du contenu */
+   [half] minmax(auto, calc(var(--liquid-content) / 2)) /* Moitié droite du contenu */
+   [content-end] minmax(var(--liquid-spacer), 1fr) /* Marge latérale droite */
    [liquid-end];
 }</code></pre>
 
     <section id="tuto">
       <h2>Comment ça marche ?</h2>
 
-      <p><i>TL;DR: Affichez la grille.</i></p>
+      <p>
+        <i
+          >Pour bien visualiser, activez l'affichage de la grille via la case à
+          cocher en bas de page.</i
+        >
+      </p>
 
       <p>
-        La grille principale contient tous les éléments et est découpée en
-        <strong>quatre colonnes</strong> :
+        Le système repose sur une grille CSS (<code>display: grid</code>)
+        composée de quatre colonnes principales. Les lignes de séparation entre
+        ces colonnes sont nommées pour faciliter le positionnement des éléments
+        enfants :
       </p>
 
       <ul>
         <li>
-          Les <b>deux colonnes latérales</b> ont une taille fluide, variant de
-          <code>2rem</code> (en vrai il s'agit d'une variable) jusqu'à
-          <code>1fr</code>. Cela signifie que ces deux colonnes occupent tout
-          l'espace disponible dans la fenêtre, avec un minimum incompressible de
-          "2rem"
+          <code>liquid-start</code> : Début de la grille (bord gauche de la
+          page).
         </li>
         <li>
-          Les <b>deux colonnes centrales</b> réunies occupent une largeur fluide
-          variant de <code>auto</code> (la taille minimale pour le contenu)
-          jusqu'à <code>1024px</code> dans notre démo. En clair, c'est dans
-          cette zone que va se placer l'ensemble des contenus de la page afin
-          qu'ils occupent 840px de large tout en demeurant fluides si la fenêtre
-          se réduit.
+          <code>content-start</code> : Début de la zone de contenu principale.
+        </li>
+        <li><code>half</code> : Milieu de la zone de contenu principale.</li>
+        <li>
+          <code>content-end</code> : Fin de la zone de contenu principale.
         </li>
         <li>
-          Les lignes verticales qui séparent ces 4 colonnes sont
-          <b>nommées</b> (ce sont les valeurs entre crochets que l'on lit dans
-          le code de la grille). La première ligne tout à gauche s'appelle
-          <code>[liquid-start]</code>, la suivante
-          <code>[content-start]</code> et ainsi de suite jusqu'à la dernière
-          tout à droite qui est <code>[liquid-end]</code>.
-        </li>
-        <li>
-          Les éléments enfants de la grille pauvent ainsi être facilement
-          positionnés en indiquant la ligne de départ et la ligne d'arrivée, par
-          exemple
-          <code>.splash-start {grid-column: liquid-start / content-end;}</code>.
-          Tadaam !
+          <code>liquid-end</code> : Fin de la grille (bord droit de la page).
         </li>
       </ul>
+      <p>
+        Par défaut, les enfants directs du conteneur <code>.liquid</code> se
+        placent dans la zone de contenu (entre <code>content-start</code> et
+        <code>content-end</code>). Les classes spécifiques
+        (<code>.splash</code>, <code>.splash-start</code>, etc.) utilisent la
+        propriété <code>grid-column</code> pour indiquer sur quelles lignes de
+        la grille elles doivent s'étendre. Par exemple,
+        <code>.splash-start {grid-column: liquid-start / content-end;}</code>
+        signifie que l'élément commencera sur la ligne
+        <code>liquid-start</code> et se terminera sur la ligne
+        <code>content-end</code>.
+      </p>
     </section>
 
     <section id="ressources">
@@ -197,7 +225,7 @@
         <a href="https://codepen.io/hexagoncircle/pen/dyejrpE?editors=1100"
           >l'inspecteur de grille</a
         >
-        sur son Codepen :
+        sur son Codepen.
       </p>
     </footer>
     <!-- </div> -->
