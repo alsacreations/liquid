@@ -1,0 +1,322 @@
+.liquid {
+  --liquid-spacer: 2rem;
+  --liquid-content: 1024px;
+
+  display: grid;
+  grid-template-columns:
+    [liquid-start] minmax(var(--liquid-spacer), 1fr)
+    [content-start] minmax(auto, calc(var(--liquid-content) / 2))
+    [half] minmax(auto, calc(var(--liquid-content) / 2))
+    [content-end] minmax(var(--liquid-spacer), 1fr)
+    [liquid-end];
+}
+
+/* Place all children */
+.liquid > * {
+  grid-column: content;
+}
+
+/* Spread all surface */
+.splash {
+  display: grid;
+  grid-template-columns: inherit;
+  grid-column: liquid-start / liquid-end;
+}
+.splash > * {
+  grid-column: content;
+}
+
+/* Spread start */
+.splash-start {
+  grid-column: liquid-start / content-end;
+}
+
+/* Spread end */
+.splash-end {
+  grid-column: content-start / liquid-end;
+}
+
+/* Spread half start */
+.splash-half-start {
+  grid-column: liquid-start / half;
+}
+
+/* Spread half end */
+.splash-half-end {
+  grid-column: half / liquid-end;
+}
+
+/* Hero image */
+.hero-img {
+  justify-self: center;
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Reset */
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    min-width: 0;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ddd;
+    color: #222;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-family: system-ui, sans-serif;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    line-height: 0;
+    cursor: pointer;
+  }
+  :where(
+      img,
+      table,
+      td,
+      blockquote,
+      pre,
+      code,
+      input,
+      textarea,
+      select,
+      video,
+      svg,
+      iframe
+    ) {
+    max-width: 100%;
+  }
+  :where(pre, code, kbd, samp) {
+    font-size: 1em;
+    font-family: monospace, monospace;
+  }
+
+  :where(pre) {
+    overflow: auto;
+    line-height: normal;
+    white-space: pre-wrap;
+    tab-size: 2;
+  }
+}
+
+/* Deco */
+@layer deco {
+  h1 {
+    margin-bottom: 0;
+    font-weight: 300;
+    font-size: 4rem;
+    font-family: georgia, serif;
+    text-align: center;
+  }
+  h2 {
+    margin-block: 1rem 3rem;
+    font-weight: 300;
+    font-family: georgia, serif;
+    text-align: center;
+  }
+  p {
+    margin-block: 0 1rem;
+  }
+  ul {
+    margin: 0;
+  }
+  .splash {
+    margin-block: 1rem;
+    padding-top: 1rem;
+    background: #333;
+    color: #fff;
+    font-weight: 300;
+  }
+  [class*="splash-"] {
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    background: sienna;
+    color: #fff;
+    font-weight: 300;
+    text-align: left;
+  }
+  [class*="-end"] {
+    background: DarkSlateGray;
+  }
+  pre {
+    margin-inline: 0;
+    padding: 1rem;
+    border-radius: 10px;
+    background: #333;
+    color: #fff;
+    font-weight: 300;
+    text-align: left;
+  }
+  code {
+    font-weight: 700;
+    font-size: smaller;
+    font-family: monospace, monospace;
+  }
+  footer {
+    margin-inline: 0;
+    margin-bottom: 0 !important;
+    padding: 1rem;
+    background: #000;
+    color: #fff;
+    font-weight: 300;
+
+    & a {
+      color: inherit;
+      word-break: break-all;
+    }
+  }
+}
+
+/* ---- Debug styles ---- */
+/* Thanks to https://codepen.io/hexagoncircle/pen/dyejrpE?editors=1100 */
+.debug {
+  --theme: SaddleBrown;
+  --pseudo-offset: 0.25rem;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  grid-template-rows: 1fr;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: 0.3s ease-out;
+  transition-property: opacity, background, backdrop-filter;
+}
+
+.debug > * {
+  position: relative;
+  grid-row: 1 / -1;
+  height: 100vh;
+  margin: 0;
+  border-radius: 0;
+  border-inline: 2px dashed var(--theme);
+}
+
+.debug > *::before,
+.debug > *::after {
+  z-index: 3000;
+  position: absolute;
+  top: 50%;
+  padding: 12px 4px;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  background-color: var(--theme);
+  content: var(--column) var(--suffix);
+  color: #fff;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+}
+
+.debug::before,
+.debug::after {
+  z-index: 3000;
+  position: absolute;
+  top: 0;
+  left: 50vw;
+  content: "";
+}
+.debug::before {
+  height: 100vh;
+  border-left: 2px dashed var(--theme);
+}
+.debug::after {
+  top: 50vh;
+  padding: 8px 4px;
+  translate: var(--pseudo-offset) -50%;
+  border-radius: 4px;
+  background-color: var(--theme);
+  content: "Half";
+  color: #fff;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+}
+
+.debug > *::before {
+  left: var(--pseudo-offset);
+  --suffix: "-start";
+}
+
+.debug > *::after {
+  right: var(--pseudo-offset);
+  --suffix: "-end";
+}
+
+.debug > *:nth-child(2) {
+  --column: "Content";
+  background: rgb(139 69 19 / 10%);
+}
+
+.debug > *:nth-child(1) {
+  --column: "Liquid";
+  background: rgb(139 69 19 / 20%);
+}
+
+[id="debug"],
+[id="debug"] + label {
+  cursor: pointer;
+  user-select: none;
+}
+
+[class="debug-group"] {
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 1rem;
+  background: rgb(255 255 255 / 30%);
+}
+
+/* Hints positionning */
+
+.debug .hint {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 4px 10px;
+  overflow-x: hidden;
+  border-radius: 4px;
+  background: var(--theme);
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.7em;
+}
+
+.debug .hint-splash-start {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.debug .hint-splash-end {
+  grid-column-start: -2;
+  grid-column-end: -1;
+}
+.debug .hint-content-start {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.debug .hint-content-end {
+  grid-column-start: -3;
+  grid-column-end: -2;
+}
+
+body:has([id="debug"]:checked) .debug {
+  z-index: 1000;
+  opacity: 1;
+}
