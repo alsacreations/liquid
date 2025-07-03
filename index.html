@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Liquid</title>
   </head>
-  <body class="liquid">
+  <body data-layout="liquid">
     <!-- <div class="surface"> -->
     <h1>Liquid</h1>
     <h2>Un gabarit responsive en Grid Layout</h2>
@@ -25,8 +25,8 @@
     <ul>
       <li>
         <strong>Contenu principal centré</strong> : Le conteneur
-        <code>.liquid</code> définit une largeur maximale pour le contenu et le
-        centre horizontalement.
+        <code>[data-layout="liquid"]</code> définit une largeur maximale pour le
+        contenu et le centre horizontalement.
       </li>
       <li>
         <strong>Marges latérales dynamiques</strong> : Un espacement minimal est
@@ -34,44 +34,42 @@
         bords de la fenêtre, même sur de petits écrans.
       </li>
       <li>
-        <strong>Éléments pleine largeur (Splash)</strong> : La classe
-        <code>.splash</code> permet à un élément enfant de s'étendre sur toute
-        la largeur disponible.
+        <strong>Éléments pleine largeur (Splash)</strong> : L'attribut
+        <code>data-layout="splash"</code> permet à un élément enfant de
+        s'étendre sur toute la largeur disponible.
       </li>
       <li>
         <strong>Variantes de positionnement</strong> :
         <ul>
           <li>
-            <code>.splash-start</code> : l'élément s'étend du bord gauche
-            jusqu'à la fin de la zone de contenu.
+            <code>data-layout="splash-start"</code> : l'élément s'étend du bord
+            gauche jusqu'à la fin de la zone de contenu.
           </li>
           <li>
-            <code>.splash-end</code> : l'élément s'étend du début de la zone de
-            contenu jusqu'au bord droit.
+            <code>data-layout="splash-end"</code> : l'élément s'étend du début
+            de la zone de contenu jusqu'au bord droit.
           </li>
           <li>
-            <code>.splash-half-start</code> : l'élément s'étend du bord gauche
-            jusqu'au milieu de la page.
+            <code>data-layout="splash-half-start"</code> : l'élément s'étend du
+            bord gauche jusqu'au milieu de la page.
           </li>
           <li>
-            <code>.splash-half-end</code> : l'élément s'étend du milieu de la
-            page jusqu'au bord droit.
+            <code>data-layout="splash-half-end"</code> : l'élément s'étend du
+            milieu de la page jusqu'au bord droit.
           </li>
         </ul>
       </li>
       <li>
-        <strong>Flexibilité d'application</strong> : La classe
-        <code>.liquid</code> peut être appliquée à n'importe quel conteneur, y
-        compris l'élément <code>&lt;body&gt;</code>.
+        <strong>Flexibilité d'application</strong> : L'attribut
+        <code>data-layout="liquid"</code> peut être appliqué à n'importe quel
+        conteneur, y compris l'élément <code>&lt;body&gt;</code>.
       </li>
     </ul>
 
-    <section class="splash">
+    <section data-layout="splash">
       <p>
-        Un élément de classe <code>.splash</code> s'étend sur toute la largeur
-        disponible&nbsp;:<br /><code
-          >.splash {grid-column: liquid-start / liquid-end;}</code
-        >
+        Un élément avec <code>data-layout="splash"</code> s'étend sur toute la
+        largeur.
       </p>
       <p>
         Son contenu interne reste aligné avec la zone de contenu principale.
@@ -79,70 +77,71 @@
     </section>
 
     <p>
-      Les variantes <code>.splash-start</code> et
-      <code>.splash-end</code> permettent de positionner des éléments qui
-      s'étendent sur une partie de la largeur de la page, en partant des bords.
+      Les variantes <code>data-layout="splash-start"</code> et
+      <code>data-layout="splash-end"</code> permettent de positionner des
+      éléments qui s'étendent sur une partie de la largeur de la page, en
+      partant des bords.
     </p>
 
-    <section class="splash-start">
+    <section data-layout="splash-start">
       <p>
-        Un élément de classe <code>.splash-start</code> s'étend du bord gauche
-        jusqu'à la fin de la zone de contenu&nbsp;:<br /><code
-          >.splash-start {grid-column: liquid-start / content-end;}</code
-        >
+        Un élément avec <code>data-layout="splash-start"</code> s'étend du bord
+        gauche jusqu'à la fin de la zone de contenu. Son contenu interne reste
+        aligné avec la zone de contenu principale.
       </p>
     </section>
 
-    <section class="splash-end">
+    <section data-layout="splash-end">
       <p>
-        Un élément de classe <code>.splash-end</code> s'étend du début de la
-        zone de contenu jusqu'au bord droit&nbsp;:<br /><code
-          >.splash-end {grid-column: content-start / liquid-end;}</code
-        >
+        Un élément avec <code>data-layout="splash-end"</code> s'étend du début
+        de la zone de contenu jusqu'au bord droit. Son contenu interne reste
+        aligné avec la zone de contenu principale.
       </p>
     </section>
 
     <p>
-      Les variantes <code>.splash-half-start</code> et
-      <code>.splash-half-end</code> permettent de positionner des éléments sur
-      une moitié de la page.
+      Les variantes <code>data-layout="splash-half-start"</code> et
+      <code>data-layout="splash-half-end"</code> permettent de positionner des
+      éléments sur une moitié de la page.
     </p>
 
-    <section class="splash-half-start">
+    <section data-layout="splash-half-start">
       <p>
-        Un élément de classe <code>.splash-half-start</code> s'étend du bord
-        gauche jusqu'au milieu de la page&nbsp;:<br /><code
-          >.splash-half-start {grid-column: liquid-start / half;}</code
-        >
+        Un élément avec <code>data-layout="splash-half-start"</code> s'étend du
+        bord gauche jusqu'au milieu de la page.
       </p>
     </section>
 
-    <section class="splash-half-end">
+    <section data-layout="splash-half-end">
       <p>
-        Un élément de classe <code>.splash-half-end</code> s'étend du milieu de
-        la page jusqu'au bord droit&nbsp;:<br /><code
-          >.splash-half-end {grid-column: half / liquid-end;}</code
-        >
+        Un élément avec <code>data-layout="splash-half-end"</code> s'étend du
+        milieu de la page jusqu'au bord droit.
       </p>
     </section>
 
     <img
-      class="hero-img splash"
+      class="hero-img"
+      data-layout="splash"
       src="https://picsum.photos/1200/900"
       alt="une image aléatoire"
     />
 
-    <pre><code>.liquid {
-  --liquid-spacer: 2rem; /* Espacement minimal sur les côtés */
-  --liquid-content: 1024px; /* Largeur maximale du contenu */
+    <pre><code>/* Liquid */
+[data-layout*="liquid"] {
+  --liquid-min-margin: var(--spacing-16, 1rem);
+  --liquid-content: var(--spacing-2xl, 1280px);
 
   display: grid;
   grid-template-columns:
-   [liquid-start] minmax(var(--liquid-spacer), 1fr) /* Marge latérale gauche */
-   [content-start] minmax(auto, calc(var(--liquid-content) / 2)) /* Moitié gauche du contenu */
-   [half] minmax(auto, calc(var(--liquid-content) / 2)) /* Moitié droite du contenu */
-   [content-end] minmax(var(--liquid-spacer), 1fr) /* Marge latérale droite */
-   [liquid-end];
+    [liquid-start] minmax(var(--liquid-min-margin), 1fr)
+    [content-start] minmax(0, calc(var(--liquid-content) / 2))
+    [half] minmax(0, calc(var(--liquid-content) / 2))
+    [content-end] minmax(var(--liquid-min-margin), 1fr)
+    [liquid-end];
+
+  :where(& > *) {
+    grid-column: content;
+  }
 }</code></pre>
 
     <section id="tuto">
@@ -179,13 +178,17 @@
         </li>
       </ul>
       <p>
-        Par défaut, les enfants directs du conteneur <code>.liquid</code> se
-        placent dans la zone de contenu (entre <code>content-start</code> et
-        <code>content-end</code>). Les classes spécifiques
-        (<code>.splash</code>, <code>.splash-start</code>, etc.) utilisent la
-        propriété <code>grid-column</code> pour indiquer sur quelles lignes de
-        la grille elles doivent s'étendre. Par exemple,
-        <code>.splash-start {grid-column: liquid-start / content-end;}</code>
+        Par défaut, les enfants directs du conteneur
+        <code>[data-layout="liquid"]</code> se placent dans la zone de contenu
+        (entre <code>content-start</code> et <code>content-end</code>). Les
+        attributs spécifiques (<code>data-layout="splash"</code>,
+        <code>data-layout="splash-start"</code>, etc.) utilisent la propriété
+        <code>grid-column</code> pour indiquer sur quelles lignes de la grille
+        elles doivent s'étendre. Par exemple,
+        <code
+          >[data-layout="splash-start"] {grid-column: liquid-start /
+          content-end;}</code
+        >
         signifie que l'élément commencera sur la ligne
         <code>liquid-start</code> et se terminera sur la ligne
         <code>content-end</code>.
@@ -215,7 +218,7 @@
       </ul>
     </section>
 
-    <footer class="splash" role="contentinfo">
+    <footer data-layout="splash" role="contentinfo">
       <p>
         Liquid est un gabarit conçu par Alsacréations, inspiré de plein
         d'exemples sur Codepen.
@@ -235,8 +238,8 @@
       <input id="debug" type="checkbox" />
       <label for="debug">Show grid</label>
     </div>
-    <div class="liquid debug">
-      <div class="splash">
+    <div data-layout="liquid" class="debug">
+      <div data-layout="splash">
         <code class="hint hint-splash-start"
           >minmax(var(--liquid-spacer), 1fr)</code
         >

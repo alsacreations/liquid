@@ -6,15 +6,15 @@ Un gabarit responsive en Grid Layout.
 
 ## Fonctionnalités
 
-- **Contenu principal centré** : Le conteneur `.liquid` définit une largeur maximale pour le contenu et le centre horizontalement.
+- **Contenu principal centré** : Le conteneur `[data-layout="liquid"]` définit une largeur maximale pour le contenu et le centre horizontalement.
 - **Marges latérales dynamiques** : Un espacement minimal est conservé sur les côtés, assurant que le contenu ne touche jamais les bords de la fenêtre, même sur de petits écrans.
-- **Éléments pleine largeur (Splash)** : La classe `.splash` permet à un élément enfant de s'étendre sur toute la largeur disponible.
+- **Éléments pleine largeur (Splash)** : L'attribut `data-layout="splash"` permet à un élément enfant de s'étendre sur toute la largeur disponible.
 - **Variantes de positionnement** :
-  - `.splash-start` : l'élément s'étend du bord gauche jusqu'à la fin de la zone de contenu.
-  - `.splash-end` : l'élément s'étend du début de la zone de contenu jusqu'au bord droit.
-  - `.splash-half-start` : l'élément s'étend du bord gauche jusqu'au milieu de la page.
-  - `.splash-half-end` : l'élément s'étend du milieu de la page jusqu'au bord droit.
-- **Flexibilité d'application** : La classe `.liquid` peut être appliquée à n'importe quel conteneur, y compris l'élément `<body>`.
+  - `data-layout="splash-start"` : l'élément s'étend du bord gauche jusqu'à la fin de la zone de contenu.
+  - `data-layout="splash-end"` : l'élément s'étend du début de la zone de contenu jusqu'au bord droit.
+  - `data-layout="splash-half-start"` : l'élément s'étend du bord gauche jusqu'au milieu de la page.
+  - `data-layout="splash-half-end"` : l'élément s'étend du milieu de la page jusqu'au bord droit.
+- **Flexibilité d'application** : L'attribut `data-layout="liquid"` peut être appliqué à n'importe quel conteneur, y compris l'élément `<body>`.
 
 ## Comment ça marche ?
 
@@ -26,23 +26,23 @@ Le système repose sur une grille CSS à quatre colonnes principales, dont les l
 - `content-end` : Fin de la zone de contenu principale.
 - `liquid-end` : Fin de la grille (bord droit de la page).
 
-Les enfants directs du conteneur `.liquid` se placent par défaut dans la zone de contenu (`content-start` / `content-end`). Les classes spécifiques (`.splash`, `.splash-start`, etc.) utilisent `grid-column` pour s'étendre sur différentes zones de cette grille.
+Les enfants directs du conteneur `[data-layout="liquid"]` se placent par défaut dans la zone de contenu (`content-start` / `content-end`). Les attributs spécifiques (`data-layout="splash"`, `data-layout="splash-start"`, etc.) utilisent `grid-column` pour s'étendre sur différentes zones de cette grille.
 
 ## Utilisation
 
 1. Liez le fichier `styles.css` à votre page HTML.
-2. Appliquez la classe `liquid` à un élément conteneur (par exemple, `<body>` ou un `<div>` principal).
-3. Utilisez les classes `splash`, `splash-start`, `splash-end`, `splash-half-start`, ou `splash-half-end` sur les éléments enfants que vous souhaitez voir s'étendre au-delà de la zone de contenu principale.
+2. Appliquez l'attribut `data-layout="liquid"` à un élément conteneur (par exemple, `<body>` ou un `<div>` principal).
+3. Utilisez les attributs `data-layout="splash"`, `data-layout="splash-start"`, `data-layout="splash-end"`, `data-layout="splash-half-start"`, ou `data-layout="splash-half-end"` sur les éléments enfants que vous souhaitez voir s'étendre au-delà de la zone de contenu principale.
 
 Exemple de structure HTML :
 
 ```html
-<body class="liquid">
+<body data-layout="liquid">
   <header>
     <h1>Titre du site</h1>
   </header>
 
-  <section class="splash">
+  <section data-layout="splash">
     <p>Contenu pleine largeur</p>
   </section>
 
@@ -50,13 +50,13 @@ Exemple de structure HTML :
     <p>Contenu principal centré.</p>
   </main>
 
-  <section class="splash-start">
+  <section data-layout="splash-start">
     <p>
       Contenu aligné à gauche, s'étendant jusqu'à la fin de la zone de contenu.
     </p>
   </section>
 
-  <footer class="splash">
+  <footer data-layout="splash">
     <p>Pied de page pleine largeur</p>
   </footer>
 </body>
@@ -72,7 +72,7 @@ Vous pouvez personnaliser l'apparence et le comportement de `liquid` en modifian
 Extrait du CSS :
 
 ```css
-.liquid {
+[data-layout="liquid"] {
   --liquid-spacer: 2rem;
   --liquid-content: 1024px;
 

@@ -1,49 +1,70 @@
-.liquid {
-  --liquid-spacer: 2rem;
-  --liquid-content: 1024px;
+/* Liquid */
+[data-layout*="liquid"] {
+  --liquid-min-margin: var(--spacing-16, 1rem);
+  --liquid-content: var(--spacing-2xl, 1280px);
 
   display: grid;
   grid-template-columns:
-    [liquid-start] minmax(var(--liquid-spacer), 1fr)
-    [content-start] minmax(auto, calc(var(--liquid-content) / 2))
-    [half] minmax(auto, calc(var(--liquid-content) / 2))
-    [content-end] minmax(var(--liquid-spacer), 1fr)
+    [liquid-start] minmax(var(--liquid-min-margin), 1fr)
+    [content-start] minmax(0, calc(var(--liquid-content) / 2))
+    [half] minmax(0, calc(var(--liquid-content) / 2))
+    [content-end] minmax(var(--liquid-min-margin), 1fr)
     [liquid-end];
+
+  :where(& > *) {
+    grid-column: content;
+  }
 }
 
-/* Place all children */
-.liquid > * {
-  grid-column: content;
-}
-
-/* Spread all surface */
-.splash {
+/* Splash et autres enfants de Liquid */
+[data-layout*="splash"] {
   display: grid;
+  grid-column: liquid;
   grid-template-columns: inherit;
-  grid-column: liquid-start / liquid-end;
-}
-.splash > * {
-  grid-column: content;
+
+  :where(& > *) {
+    grid-column: content;
+  }
 }
 
-/* Spread start */
-.splash-start {
+[data-layout*="splash-start"] {
+  display: grid;
   grid-column: liquid-start / content-end;
+  grid-template-columns: subgrid;
+
+  :where(& > *) {
+    grid-column: content;
+  }
 }
 
-/* Spread end */
-.splash-end {
+[data-layout*="splash-end"] {
+  display: grid;
   grid-column: content-start / liquid-end;
+  grid-template-columns: subgrid;
+
+  :where(& > *) {
+    grid-column: content;
+  }
 }
 
-/* Spread half start */
-.splash-half-start {
+[data-layout*="splash-half-start"] {
+  display: grid;
   grid-column: liquid-start / half;
+  grid-template-columns: subgrid;
+
+  :where(& > *) {
+    grid-column: content-start / half;
+  }
 }
 
-/* Spread half end */
-.splash-half-end {
+[data-layout*="splash-half-end"] {
+  display: grid;
   grid-column: half / liquid-end;
+  grid-template-columns: subgrid;
+
+  :where(& > *) {
+    grid-column: half / content-end;
+  }
 }
 
 /* Hero image */
@@ -132,14 +153,14 @@
   ul {
     margin: 0;
   }
-  .splash {
+  [data-layout="splash"] {
     margin-block: 1rem;
     padding-top: 1rem;
     background: #333;
     color: #fff;
     font-weight: 300;
   }
-  [class*="splash-"] {
+  [data-layout*="splash-"] {
     margin-bottom: 1rem;
     padding-top: 1rem;
     background: sienna;
@@ -147,7 +168,7 @@
     font-weight: 300;
     text-align: left;
   }
-  [class*="-end"] {
+  [data-layout*="-end"] {
     background: DarkSlateGray;
   }
   pre {
